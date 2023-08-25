@@ -7,17 +7,13 @@ RAMA_ACTUAL=$(git symbolic-ref --short HEAD)
 # Función para ejecutar el lint con correcciones
 ejecutarLintConCorrecciones() {
   npm run fix:lint
+  echo "Lint ejecutado con correcciones."
 }
 
-# Función para ejecutar el lint y solicitar confirmación
-ejecutarLintConConfirmacion() {
-  read -p "¿Deseas continuar con el lint en la rama $RAMA_ACTUAL? (y/n): " confirmar
-  if [ "$confirmar" = "y" ]; then
-    npm run lint
-  else
-    echo "Commit cancelado."
-    exit 1
-  fi
+# Función para ejecutar el lint
+ejecutarLint() {
+  npm run lint
+  echo "Lint ejecutado sin correcciones."
 }
 
 # Verifica si hay pendiente de jalar en la rama actual (excepto main)
@@ -32,8 +28,10 @@ if [ "$RAMA_ACTUAL" != "main" ]; then
 fi
 
 # Ejecuta comandos según la rama actual
-if [ "$RAMA_ACTUAL" = "develop" ] || [ "$RAMA_ACTUAL" = "main" ]; then
+if [ "$RAMA_ACTUAL" = "develop" ]; then
+  ejecutarLintConCorrecciones
+elif [ "$RAMA_ACTUAL" = "main" ]; then
   ejecutarLintConCorrecciones
 else
-  ejecutarLintConConfirmacion
+  ejecutarLint
 fi
