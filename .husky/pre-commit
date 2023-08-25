@@ -1,19 +1,25 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
+# Colores para los mensajes en la consola
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+RED='\033[0;31m'
+NC='\033[0m' # No Color
+
 # Obtén el nombre de la rama actual
 RAMA_ACTUAL=$(git symbolic-ref --short HEAD)
 
 # Función para ejecutar el lint con correcciones
 ejecutarLintConCorrecciones() {
   npm run fix:lint
-  echo "Lint ejecutado con correcciones."
+  echo -e "${GREEN}Lint ejecutado con correcciones.${NC}"
 }
 
 # Función para ejecutar el lint
 ejecutarLint() {
   npm run lint
-  echo "Lint ejecutado sin correcciones."
+  echo -e "${YELLOW}Lint ejecutado sin correcciones.${NC}"
 }
 
 # Verifica si hay pendiente de jalar en la rama actual (excepto main)
@@ -22,7 +28,7 @@ if [ "$RAMA_ACTUAL" != "main" ]; then
   CAMBIOS_PENDIENTES=$(git rev-list HEAD..origin/main)
 
   if [ "$CAMBIOS_PENDIENTES" != "" ]; then
-    echo "Tienes cambios pendientes por jalar desde main. Por favor, actualiza tu rama antes de hacer el commit."
+    echo -e "${RED}Tienes cambios pendientes por jalar desde main. Por favor, actualiza tu rama antes de hacer el commit.${NC}"
     exit 1
   fi
 fi
