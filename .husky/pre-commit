@@ -20,7 +20,7 @@ ejecutarLintConConfirmacion() {
   fi
 }
 
-# Verifica si hay pendiente de jalar en la rama actual
+# Verifica si hay pendiente de jalar en la rama actual (excepto main)
 if [ "$RAMA_ACTUAL" != "main" ]; then
   git fetch origin
   CAMBIOS_PENDIENTES=$(git rev-list HEAD..origin/main)
