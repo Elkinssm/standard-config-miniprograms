@@ -24,8 +24,14 @@ Page({
 
 
 
-  
 
+
+
+
+
+
+
+  
   getParam() {
     const {query, referrerInfo: {extraData} = {}} = my.getLaunchOptionsSync();
     my.alert({
