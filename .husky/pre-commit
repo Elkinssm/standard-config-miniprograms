@@ -19,7 +19,7 @@ ejecutarLintConCorrecciones() {
 # Función para ejecutar el lint
 ejecutarLint() {
   npm run lint
-  echo -e "${YELLOW}Lint ejecutado sin correcciones.${NC}"
+  echo -e "${YELLOW}Lint ejecutado para verificar. Si deseas aplicar correcciones, ejecuta 'npm run fix:lint'.${NC}"
 }
 
 # Verifica si hay pendiente de jalar en la rama actual (excepto main)
