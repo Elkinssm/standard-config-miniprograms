@@ -1,4 +1,28 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-npm run fix:lint
+# Verifica si hay pendiente de jalar en la rama actual
+git fetch origin
+CAMBIOS_PENDIENTES=$(git rev-list HEAD..origin/main)
+
+if [ "$CAMBIOS_PENDIENTES" != "" ]; then
+  echo "Tienes cambios pendientes por jalar desde main. Por favor, actualiza tu rama antes de hacer el commit."
+  exit 1
+fi
+
+# Obtén el nombre de la rama actual
+RAMA_ACTUAL=$(git symbolic-ref --short HEAD)
+
+if [ "$RAMA_ACTUAL" = "develop" ]; then
+  npm run fix:lint
+elif [ "$RAMA_ACTUAL" = "main" ]; then
+  read -p "Estás haciendo un commit en la rama main. ¿Estás seguro? (y/n): " confirmar
+  if [ "$confirmar" = "y" ]; then
+    npm run fix:lint
+  else
+    echo "Commit cancelado."
+    exit 1
+  fi
+else
+  npm run lint
+fi
