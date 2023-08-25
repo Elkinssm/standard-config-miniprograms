@@ -24,5 +24,10 @@
     "collectCoverageFrom": [
       "**/main/domain/**/*.{js,jsx}"
     ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "sh .husky/pre-commit"
+    }
   }
 }
