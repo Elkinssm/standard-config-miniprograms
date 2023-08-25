@@ -22,7 +22,10 @@ Page({
     });
   },
 
+
+
   getParam() {
+    var params = this;
     const {query, referrerInfo: {extraData} = {}} = my.getLaunchOptionsSync();
     my.alert({
       title: "Prueba data",
