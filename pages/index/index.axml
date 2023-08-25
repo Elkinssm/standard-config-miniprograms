@@ -1,0 +1,22 @@
+<view class="container">
+  <text class="title">Data test</text>
+  <view>
+    <input
+      placeholder="Info from onLaunch"
+      class="info-box"
+      value="{{launchData}}"
+      readonly="true"
+    >
+    </input>
+
+    <input
+      placeholder="Info from onShow"
+      class="info-box"
+      value="{{showData}}"
+      readonly="true"
+    ></input>
+  </view>
+  <button type="primary" onTap="getParam">
+    getParam
+  </button>
+</view>
