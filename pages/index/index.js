@@ -11,14 +11,10 @@ Page({
 
   onShow(options) {
     console.log("Received data in onShow:", options);
-    console.log("Received data in onShow:", receivedData);
-    this.setData({
-      showData: receivedData
-    });
+    this.setData({});
   },
 
   getParam() {
-    debugger;
     const {query, referrerInfo: {extraData} = {}} = my.getLaunchOptionsSync();
     console.log(`query : ${query} o extraData : ${extraData}`);
     my.alert({
