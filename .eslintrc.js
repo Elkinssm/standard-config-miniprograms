@@ -23,6 +23,10 @@ module.exports = {
     "no-undef": "error",
     "no-console": "warn",
     "no-debugger": "error",
-    "no-constant-condition": "error"
+    "no-constant-condition": "error",
+    indent: ["error", 2],
+    camelcase: ["error", {properties: "always"}],
+    quotes: "off",
+    semi: "off"
   }
 };
