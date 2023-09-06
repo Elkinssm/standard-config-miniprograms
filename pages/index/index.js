@@ -15,7 +15,7 @@ Page({
   },
 
   getParam() {
-    const {query, referrerInfo: {extraData} = {}} = my.getLaunchOptionsSync();
+    const { query, referrerInfo: { extraData } = {} } = my.getLaunchOptionsSync();
     console.log(`query : ${query} o extraData : ${extraData}`);
     my.alert({
       title: "Prueba data",
